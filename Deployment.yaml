@@ -35,23 +35,3 @@ spec:
             configMapKeyRef:
               key: "app"
               name: "app-service-config-usxc"
----
-apiVersion: "autoscaling/v2beta1"
-kind: "HorizontalPodAutoscaler"
-metadata:
-  name: "app-service-hpa-urka"
-  namespace: "default"
-  labels:
-    app: "app-service"
-spec:
-  scaleTargetRef:
-    kind: "Deployment"
-    name: "app-service"
-    apiVersion: "apps/v1"
-  minReplicas: 1
-  maxReplicas: 5
-  metrics:
-  - type: "Resource"
-    resource:
-      name: "cpu"
-      targetAverageUtilization: 80
